@@ -13,7 +13,8 @@ app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: false }));
 //parse json data
 app.use(express.json());
-//routes/router
+
+//routes
 app.use('/api/user', user);//creating seperate routers for seperate purposes
 app.use('/login', auth);
 
