@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 //parse json data
 app.use(express.json());
 //routes/router
-app.use('/api/users', users);//creating seperate routers for seperate purposes
+app.use('/api/user', user);//creating seperate routers for seperate purposes
 app.use('/login', auth);
 
 const initServer = async () => {

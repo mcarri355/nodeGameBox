@@ -3,11 +3,6 @@ const mongoose = require('mongoose');
 
 //defined User Schema
 const userSchema = new mongoose.Schema({
-  id: { 
-    type: Number,   
-    required: true,
-    trim: true 
-  },
   username:{
     type: String,
     unique: true,
@@ -20,7 +15,7 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
 
-  },{ collection: 'User' }
+  },{ collection: 'MemoryUsers' }
 );
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('MemoryUsers', userSchema);
