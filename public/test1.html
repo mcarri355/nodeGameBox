@@ -6,16 +6,6 @@
     <title>Document</title>
 
 <style>
-    @font-face {
-  font-family: "Creepy";
-  src: url("https://raw.githubusercontent.com/WebDevSimplified/Mix-Or-Match/master/Assets/Fonts/Creepy.woff?raw=true") format("woff"), url("https://raw.githubusercontent.com/WebDevSimplified/Mix-Or-Match/master/Assets/Fonts/Creepy.woff2?raw=true") format("woff2")
-}
-
-@font-face {
-  font-family: "Lunacy";
-  src: url("https://raw.githubusercontent.com/WebDevSimplified/Mix-Or-Match/master/Assets/Fonts/Lunacy.woff") format("woff"), url("https://raw.githubusercontent.com/WebDevSimplified/Mix-Or-Match/master/Assets/Fonts/Lunacy.woff2") format("woff2")
-}
-
 * {
   box-sizing: border-box;
 }
@@ -34,8 +24,7 @@ body {
 }
 
 .page-title {
-  color: #FF6D00;
-  font-family: Creepy, serif;
+  color: #9dff00;
   font-weight: normal;
   text-align: center;
   font-size: 6em;
@@ -48,8 +37,7 @@ body {
 }
 
 .game-info {
-  font-family: Lunacy, serif;
-  color: #FFBB89;
+  color: #7ba635;
   font-size: 4em;
 }
 
@@ -69,7 +57,7 @@ body {
 }
 
 .card:hover {
-  cursor: url("https://raw.githubusercontent.com/WebDevSimplified/Mix-Or-Match/master/Assets/Cursors/GhostHover.cur"), auto;
+  cursor: url(./images/smile.png)
 }
 
 .card-face {
@@ -109,8 +97,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 100;
-  color: #FF6D00;
-  font-family: Creepy, serif;
+  color: #9dff00;
 }
 
 .overlay-text-small {
@@ -148,11 +135,11 @@ body {
 
 .card-back {
   background-color: black;
-  border-color: #FF6D00;
+  border-color: #9dff00;
 }
 
 .card-front {
-  background-color: #FFBB89;
+  background-color: #7ba635;
   border-color: #333;
   transform: rotateY(180deg);
 }

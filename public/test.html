@@ -1,268 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/alpinejs@3.1.x/dist/cdn.min.js" defer></script>
-
-    <title>Document</title>
-    <style type="text/css">
-        [x-cloak] { display: none !important; }
-body {
-  background: url("https://assets.codepen.io/74045/green.jpg") no-repeat center center fixed;
-  background-size: cover;
+    <title>MixOrMatch</title>
+    
+    <style>
+.body{
+    background-image: url(./images/greenbackg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-
-.cardArea {
-  width: 100%;
+.game-container {
+  width: 500px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.cardArea h3 {
-  color: white;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-.cardArea img {
-  max-width:18%;
-  margin: 5px;
-}
-
-#status {
+.cards-container {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  
-  width: 60%;
-  height: 100px;
-  margin-top: 20px;
-  margin-left: auto; 
-  margin-right: auto;
-  background-color: white;
-  font-size: 1.5em;
+  align-items: center;
 }
 
-#status p {
-  margin-top: auto; 
-  margin-bottom: auto;
+.card {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./images/smile.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: none;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card.matched {
+  background-color: #ccc;
+}
+
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.overlay-text {
+  width: 200px;
+  height: 100px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  visibility: hidden;
+}
+
+.overlay-text.visible {
+  visibility: visible;
+}
+
     </style>
 </head>
+
 <body>
-    <div x-data="app" x-cloak>
-        <div id="pcArea" class="cardArea">
-            <h3>Dealer</h3>
-            <template x-for="card in pcCards">
-                <!-- todo: don't like the logic in template -->
-                <img :src="card.showback?BACK_CARD:card.image" :title="card.showback?'':card.title">
-            </template>
-        </div>
-        <div id="playerArea" class="cardArea">
-            <h3>Player</h3>
-            <template x-for="card in playerCards">
-                <img :src="card.image" :title="card.title">
-            </template>
-        </div>
-        <div id="status">
-            <template x-if="playerTurn">
-                <p>
-                    What do you do?
-                    <button @click="hitMe" :disabled="hitMeDisabled">Hit Me!</button>
-                    <button @click="stay">Stay</button>
-                </p>
-            </template>
-            <template x-if="pcTurn">
-                <p>
-                    <span x-text="pcText"></span>
-                </p>
-            </template>
-            <template x-if="playerBusted">
-                <p>
-                    You busted!
-                    <button @click="newGame">New Game</button>
-                </p>
-            </template>
-            <template x-if="pcBusted">
-                <p>
-                    Dealer busted - you win!
-                    <button @click="newGame">New Game</button>
-                </p>
-            </template>
-            <template x-if="pcWon">
-                <p>
-                    Dealer won.
-                    <button @click="newGame">New Game</button>
-                </p>
-            </template>
-            <template x-if="playerWon">
-                <p>
-                    You won!
-                    <button @click="newGame">New Game</button>
-                </p>
-            </template>
+    <div class="game-container">
+        <h1>MixOrMatch</h1>
+        <div class="cards-container"></div>
+        <div class="overlay-container">
+            <div class="overlay-text start-game-text">
+                <h2>Start Game</h2>
+                <p>Click to start the game!</p>
+            </div>
+            <div class="overlay-text game-over-text">
+                <h2>Game Over</h2>
+                <p>You lose!</p>
+            </div>
+            <div class="overlay-text victory-text">
+                <h2>Victory!</h2>
+                <p>You win!</p>
+            </div>
         </div>
     </div>
 
-    <script type="text/javascript">
-const BACK_CARD = "https://deckofcardsapi.com/static/img/back.png";
-    // time between dealer actions
-    const DEALER_PAUSE = 1500;
-
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('app', () => ({
-            async init() {
-                await this.shuffleDeck();
-                await this.deal();
-            },
-            async shuffleDeck() {
-                let resp = await fetch(`https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=${this.deckSize}`);
-                this.deck = await resp.json();
-            },
-            // initial deal, 2 cards to PC/player
-            async deal() {
-                // first to player, then PC, then player, then PC
-                this.playerCards.push(await this.drawCard());
-                // for the dealer, the first card is turned over
-                let newcard = await this.drawCard();
-                newcard.showback = true;
-                this.pcCards.push(newcard);
-                this.playerCards.push(await this.drawCard());
-                this.pcCards.push(await this.drawCard());
-            },
-            async drawCard(count = 1) {
-                let resp = await fetch(`https://www.deckofcardsapi.com/api/deck/${this.deck.deck_id}/draw/?count=${count}`);
-                let cardArr = await resp.json();
-                let card = cardArr.cards[0];
-                card.title = `${card.value} of ${card.suit}`;
-                return card;
-            },
-            getCount(hand) {
-                /*
-                For a hand, I return 2 values, a low value, where aces are considered 1s, and a high value, where aces are 11. Note that this fails to properly handle a case where I have 3 aces
-                and could have a mix... although thinking about it, you can only have ONE ace at 11, so 
-                maybe the logic is:  low == all aces at 1. high = ONE ace at 11. fixed!
-                */
-                let result = {};
-                // first we will do low, all 1s
-                let lowCount = 0;
-                for (card of hand) {
-                    if (card.value === 'JACK' || card.value === 'KING' || card.value === 'QUEEN') lowCount += 10;
-                    else if (card.value === 'ACE') lowCount += 1;
-                    else lowCount += Number(card.value);
-                    //console.log(card);        
-                }
-                //console.log('lowCount', lowCount);
-                let highCount = 0;
-                let oneAce = false;
-                for (card of hand) {
-                    if (card.value === 'JACK' || card.value === 'KING' || card.value === 'QUEEN') highCount += 10;
-                    else if (card.value === 'ACE') {
-                        if (oneAce) highCount += 1;
-                        else {
-                            highCount += 10;
-                            oneAce = true;
-                        }
-                    }
-                    else highCount += Number(card.value);
-                }
-                //console.log('highCount', highCount);
-                return { lowCount, highCount };
-            },
-            async hitMe() {
-                this.hitMeDisabled = true;
-                this.playerCards.push(await this.drawCard());
-                let count = this.getCount(this.playerCards);
-                if (count.lowCount >= 22) {
-                    this.playerTurn = false;
-                    this.playerBusted = true;
-                }
-                this.hitMeDisabled = false;
-            },
-            async newGame() {
-                this.pcBusted = false;
-                this.playerBusted = false;
-                this.playerWon = false;
-                this.pcWon = false;
-                this.playerCards = [];
-                this.pcCards = [];
-                await this.shuffleDeck();
-                await this.deal();
-                this.playerTurn = true;
-            },
-            async stay() {
-                this.playerTurn = false;
-                this.pcTurn = true;
-                this.startDealer();
-            },
-            async startDealer() {
-                /*
-                Idea is - I take a card everytime I'm < 17. so i check my hand, 
-                and do it, see if im going to stay or hit. if hit, i do a delay though
-                so the game isn't instant.
-                */
-
-                // really first, initial text
-                this.pcText = 'The dealer begins their turn...';
-                await delay(DEALER_PAUSE);
-
-                // first, a pause while we talk
-                this.pcText = 'Let me show my hand...';
-                await delay(DEALER_PAUSE);
-
-                // reveal my second card
-                this.pcCards[0].showback = false;
-
-                // what does the player have, we need the best under 22
-                let playerCount = this.getCount(this.playerCards);
-                let playerScore = playerCount.lowCount;
-                if (playerCount.highCount < 22) playerScore = playerCount.highCount;
-                //console.log('dealer needs to beat', playerScore);
-
-                // ok, now we're going to loop until i bust/win
-                let dealerLoop = true;
-                while (dealerLoop) {
-                    let count = this.getCount(this.pcCards);
-
-                    /*
-                    We are NOT doing 'soft 17', so 1 ace always count as 11
-                    */
-                    if (count.highCount <= 16) {
-                        this.pcText = 'Dealer draws a card...';
-                        await delay(DEALER_PAUSE);
-                        this.pcCards.push(await this.drawCard());
-                    } else if (count.highCount <= 21) {
-                        this.pcText = 'Dealer stays...';
-                        await delay(DEALER_PAUSE);
-                        dealerLoop = false;
-                        this.pcTurn = false;
-                        if (count.highCount >= playerScore) this.pcWon = true;
-                        else this.playerWon = true;
-                    } else {
-                        dealerLoop = false;
-                        this.pcTurn = false;
-                        this.pcBusted = true;
-                    }
-                }
-            },
-            deckSize: 6,
-            hitMeDisabled: false,
-            playerCards: [],
-            pcCards: [],
-            pcText: '',
-            pcBusted: false,
-            pcWon: false,
-            playerBusted: false,
-            playerWon: false,
-            pcTurn: false,
-            playerTurn: true
-        }))
-    });
-
-    async function delay(x) {
-        return new Promise(resolve => {
-            setTimeout(() => resolve(), x);
-        });
+    <script>
+        class MixOrMatch {
+    constructor(totalTime, cards) {
+        this.cardsArray = cards;
+        this.totalTime = totalTime
     }
+}
     </script>
 </body>
 </html>
