@@ -1,7 +1,7 @@
 {
   "name": "nodegamebox",
   "version": "1.0.0",
-  "description": "",
+  "description": "OUR “MEMORY GAME” reinvents a classic memory-matching game that offers a fun and challenging experience. But you can also our game online anywhere at any time. The game's objective is to memorize the location of the correct cards and match them with the correct card. Each level has a time limit; the shorter you complete a level, the more stars you get.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -19,12 +19,18 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.5.1",
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
     "mongoose": "^7.6.1",
     "morgan": "^1.10.0",
     "node": "^20.7.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   }
 }

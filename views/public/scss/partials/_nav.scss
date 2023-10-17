@@ -1,0 +1,48 @@
+.navFlex {
+    margin: {
+        left: 1rem;
+        right: 1rem;
+        top: .5rem;
+    }
+
+    ;
+    height: 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navLogo {
+        height: 100%;
+        transform: rotate(0);
+    }
+
+    div {
+        .navBtn {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            i {
+                font-size: 35px;
+            }
+        }
+
+        .navAudio {
+            background-color: #72408B;
+
+        }
+
+        .navQuit {
+            background-color: #AD1629;
+        }
+    }
+}
+
+.cardBG {
+    background-image: url('../../images/cardBG.jpg');
+    background-position: center;
+}
