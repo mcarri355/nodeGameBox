@@ -16,6 +16,9 @@
   height: 5rem;
   border-radius: 50%;
 }
+.navFlex div .navBtn:hover {
+  cursor: pointer;
+}
 .navFlex div .navBtn i {
   font-size: 35px;
 }
