@@ -6,7 +6,6 @@ const app = express();
 const auth = require('./routes/auth');
 const connectDB = require('./db/connect');
 
-
 //Static assets
 app.use(express.static('./public'));
 //parse form data
@@ -15,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //routes
-app.use('/api/user', user);//creating seperate routers for seperate purposes
+app.use('/api/user', user); //creating seperate routers for seperate purposes
 app.use('/login', auth);
 
 const initServer = async () => {
