@@ -1,8 +1,10 @@
 const cards = document.querySelectorAll('.memory-card');
-const currentTime = document.getElementById('#currentTime');
+const remaingMatches = document.getElementById('remain');
 
 let hasFlippedCard = false;
 let lockBoard = false;
+let first = false;
+let matchesFound = 0;
 let firstCard, secondCard;
 
 function flipCard() {
@@ -13,8 +15,12 @@ function flipCard() {
 
   if (!hasFlippedCard) {
     // first click
+    if (first === false) {
+      setInterval(updateCountdown, 1000);
+    }
     hasFlippedCard = true;
     firstCard = this;
+    first = true;
     return;
   }
 
@@ -28,6 +34,10 @@ function checkForMatch() {
   let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
 
   isMatch ? disableCards() : unflipCards();
+  if (isMatch) {
+    matchesFound++;
+    console.log(matchesFound);
+  }
 }
 
 function disableCards() {
@@ -65,3 +75,20 @@ cards.forEach((card) => card.addEventListener('click', flipCard));
 function reset() {
   location.reload();
 }
+
+// Countdown
+const countdown = document.getElementById('countdown');
+
+const countdownMinutes = 2;
+let time = countdownMinutes * 60;
+
+function updateCountdown() {
+  const minutes = Math.floor(time / 60.0);
+  let seconds = time % 60.0;
+  seconds = seconds < 2 ? '0' + seconds : seconds;
+  countdown.innerHTML = `${minutes}:${seconds}`;
+  time--;
+}
+
+// Remaining Matches
+remaingMatches.innerHTML = `Remaining Matches: ${matchesFound}`;

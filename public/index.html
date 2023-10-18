@@ -12,10 +12,10 @@
 
             <img src="./images/memory.png" alt="" class="navLogo">
         <div>
-            <button class="navBtn navScore">
+            <button class="navBtn navScore" onclick="window.location.href='./scoreboard.html';">
                 <i class="fa-solid fa-star" style="color: #ffffff;"></i>
             </button>
-            <button class="navBtn navQuit">
+            <button class="navBtn navQuit" onclick="window.location.href='./login.html';">
                 <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
             </button>
         </div>
@@ -76,8 +76,8 @@
         </div>
     </section>
     <footer class="footerFlex">
-        <div class="topFooter">
-            Remaining Matches: 9
+        <div class="topFooter" id="remain">
+            Matches Found
         </div>
         <div class="bottomFooter">
             <div class="bestTime bottomBtn bottomTime">
@@ -88,9 +88,7 @@
             </div>
             <div class="currentTime bottomBtn bottomTime">
                 <img src="./images/clock.png" alt="clock">
-                <div id="currentTime">
-                    0:12
-                </div>
+                <div id="countdown">2:00</div>
             </div>
             <div class="resetBtn bottomBtn" onclick="reset()">
                 RESET
