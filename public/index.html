@@ -20,56 +20,61 @@
             </button>
         </div>
     </nav>
-    <div class="container">
-        <div class="cell">
-            <div class="front" data-index="1"><img src="./images/cheese.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+    <section class="memory-game">
+        <div class="memory-card" data-framework="aurelia">
+            <img class="front-face" src="./images/cook.png" alt="cooker" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="1"><img src="./images/cheese.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+        <div class="memory-card" data-framework="aurelia">
+            <img class="front-face" src="./images/cook.png" alt="cooker" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="2"><img src="./images/skull.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+    
+        <div class="memory-card" data-framework="vue">
+            <img class="front-face" src="./images/teeth.png" alt="teeth" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="2"><img src="./images/skull.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+        <div class="memory-card" data-framework="vue">
+            <img class="front-face" src="./images/teeth.png" alt="teeth" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="3"><img src="./images/nerd.webp" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+    
+        <div class="memory-card" data-framework="angular">
+            <img class="front-face" src="./images/nerd.webp" alt="Angular" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="3"><img src="./images/nerd.webp" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+        <div class="memory-card" data-framework="angular">
+            <img class="front-face" src="./images/nerd.webp" alt="Angular" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="4"><img src="./images/cook.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+    
+        <div class="memory-card" data-framework="ember">
+            <img class="front-face" src="./images/cheese.png" alt="Ember" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="4"><img src="./images/cook.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+        <div class="memory-card" data-framework="ember">
+            <img class="front-face" src="./images/cheese.png" alt="Ember" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="5"><img src="./images/teeth.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+    
+        <div class="memory-card" data-framework="backbone">
+            <img class="front-face" src="./images/tennis.png" alt="Backbone" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="5"><img src="./images/teeth.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+        <div class="memory-card" data-framework="backbone">
+            <img class="front-face" src="./images/tennis.png" alt="Backbone" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="6"><img src="./images/tennis.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+    
+        <div class="memory-card" data-framework="react">
+            <img class="front-face" src="./images/skull.png" alt="React" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-        <div class="cell">
-            <div class="front" data-index="6"><img src="./images/tennis.png" alt="" class="memImg"></div>
-            <div class="back"><img src="./images/mark.webp" alt="" class="memImg"></div>
+        <div class="memory-card" data-framework="react">
+            <img class="front-face" src="./images/skull.png" alt="React" />
+            <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
         </div>
-    </div>
+    </section>
     <footer class="footerFlex">
         <div class="topFooter">
             Remaining Matches: 9
@@ -87,7 +92,7 @@
                     0:12
                 </div>
             </div>
-            <div class="resetBtn bottomBtn">
+            <div class="resetBtn bottomBtn" onclick="reset()">
                 RESET
             </div>
         </div>
