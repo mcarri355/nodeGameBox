@@ -22,7 +22,7 @@
 .navFlex div .navBtn i {
   font-size: 35px;
 }
-.navFlex div .navAudio {
+.navFlex div .navScore {
   background-color: #72408B;
 }
 .navFlex div .navQuit {
@@ -43,6 +43,57 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.container {
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 1rem;
+  margin: auto;
+}
+
+.cell div {
+  height: 130px;
+  border-radius: 4px;
+}
+
+.cell {
+  position: relative;
+  cursor: pointer;
+}
+
+.front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #a6a6a6;
+  background-color: #f2f2f2;
+  transform: rotateY(90deg);
+}
+
+.back {
+  background-color: #333;
+}
+
+.flip {
+  transform: rotateY(0deg);
+}
+
+.match {
+  transform: rotateY(0deg);
+}
+
+.show {
+  transform: rotateY(0deg);
+}
+
+.memImg {
+  height: 100px;
+  width: 100px;
 }
 
 .footerFlex {
@@ -105,6 +156,9 @@ body {
   font-family: "lucky";
   font-size: 2.5rem;
   padding: none;
+}
+.footerFlex .bottomFooter .resetBtn:hover {
+  cursor: pointer;
 }
 
 @font-face {
