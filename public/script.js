@@ -1,4 +1,5 @@
 const cards = document.querySelectorAll('.memory-card');
+const currentTime = document.getElementById('#currentTime');
 
 let hasFlippedCard = false;
 let lockBoard = false;
@@ -14,7 +15,6 @@ function flipCard() {
     // first click
     hasFlippedCard = true;
     firstCard = this;
-
     return;
   }
 
