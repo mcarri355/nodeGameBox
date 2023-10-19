@@ -1,3 +1,34 @@
+.navFlex {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navFlex .navLogo {
+  height: 100%;
+  transform: rotate(0);
+}
+.navFlex div .navBtn {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+.navFlex div .navBtn:hover {
+  cursor: pointer;
+}
+.navFlex div .navBtn i {
+  font-size: 35px;
+}
+.navFlex div .navScore {
+  background-color: #72408B;
+}
+.navFlex div .navQuit {
+  background-color: #AD1629;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -134,153 +165,3 @@ section {
   font-family: "lucky";
   src: url(../fonts/LuckiestGuy-Regular.ttf);
 }
-.navFlex {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  height: 8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.navFlex .navLogo {
-  height: 100%;
-  transform: rotate(0);
-}
-.navFlex div .navBtn {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-}
-.navFlex div .navBtn:hover {
-  cursor: pointer;
-}
-.navFlex div .navBtn i {
-  font-size: 35px;
-}
-.navFlex div .navScore {
-  background-color: #72408B;
-}
-.navFlex div .navQuit {
-  background-color: #AD1629;
-}
-
-html,
-body,
-div,
-span,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-pre,
-a,
-address,
-code,
-del,
-em,
-img,
-ins,
-strike,
-strong,
-sub,
-sup,
-var,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-canvas,
-footer,
-header,
-menu,
-nav,
-section,
-summary {
-  margin: 0px;
-  padding: 0px;
-  border: 0px;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-@font-face {
-  font-family: "lucky";
-  src: url(../fonts/LuckiestGuy-Regular.ttf);
-}
-* {
-  margin: 1rem;
-  padding: 1rem;
-  font-family: "lucky";
-  color: rgba(61, 61, 61, 0.8666666667);
-}
-
-.bckg {
-  background: rgb(42, 157, 78);
-  background: linear-gradient(#fff, rgb(42, 157, 78) 46%);
-}
-
-.navlogo {
-  position: relative;
-  top: 7rem;
-  left: 32rem;
-  width: 29rem;
-  height: 49rem;
-}
-
-.text {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 2rem;
-  width: 64rem;
-  height: 25rem;
-  position: relative;
-  top: 9rem;
-  left: 16rem;
-  color: rgba(61, 61, 61, 0.8666666667);
-}
-
-.stext {
-  text-align: center;
-  font-size: 22px;
-  width: 40rem;
-  height: 25rem;
-  position: relative;
-  top: 17rem;
-  left: 17rem;
-  margin-top: -15rem;
-}
-
-.astext {
-  text-align: center;
-  font-size: 18px;
-  position: relative;
-  top: -10rem;
-  left: 48rem;
-  margin-top: -15rem;
-}/*# sourceMappingURL=style.css.map */
