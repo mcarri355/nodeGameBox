@@ -17,7 +17,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
     })
 })
 
-router.get('/game', ensureAuthenticated, (req, res) => {
+router.get('/game', (req, res) => {
     res.render('pages/game', {
         user:req.user
     });
