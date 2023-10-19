@@ -36,7 +36,10 @@ function checkForMatch() {
   isMatch ? disableCards() : unflipCards();
   if (isMatch) {
     matchesFound++;
-    console.log(matchesFound);
+    remaingMatches.innerHTML = `Remaining Matches: ${matchesFound}`;
+    if (matchesFound === 6) {
+      console.log('hola');
+    }
   }
 }
 
@@ -89,6 +92,3 @@ function updateCountdown() {
   countdown.innerHTML = `${minutes}:${seconds}`;
   time--;
 }
-
-// Remaining Matches
-remaingMatches.innerHTML = `Remaining Matches: ${matchesFound}`;
