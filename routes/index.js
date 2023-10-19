@@ -12,6 +12,8 @@ router.get('/',(req, res) => {
 
 //dashboard-homepage redirect
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
+    const {user} = req
+    console.log(user);
     res.render('pages/dashboard', {
         user:req.user
     })

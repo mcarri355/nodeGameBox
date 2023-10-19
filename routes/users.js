@@ -10,9 +10,9 @@ router.get('/login', (req, res)=>{
 })
 
 //register page
-router.get('/register', (req, res)=>{
-    res.render('pages/register')
-})
+// router.get('/register', (req, res)=>{
+//     res.render('pages/register')
+// })
 
 // // Assuming you have a list of top users in your server
 // const topUsers = [

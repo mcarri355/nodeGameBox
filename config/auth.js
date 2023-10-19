@@ -4,7 +4,7 @@ const ensureAuthenticated = (req,res,next)=>{
         next();
     }else{
         // res.redirect("/users/login"); don't need 
-        request.flash('error_msg', 'please login to view this resource')
+        req.flash('error_msg', 'please login to view this resource')
         res.redirect('/users/login');
     }
 }
