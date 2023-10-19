@@ -103,6 +103,7 @@ router.post('/register', (req, res)=>{
     }
 })
 
+//www.codingnepalweb.com/login-registration-form-html-css-javascript/
 router.post('/login', (req,res,next)=>{//post information to login and redirect to dashboard if succesfful
     //if not then redirects then to the login and will flash a message 
     passport.authenticate('local',{
