@@ -24,6 +24,7 @@ app.use(morgan('tiny'))
 
 //EJS
 app.set('view engine', 'ejs')//automatically loads to the views folder
+app.use(express.static('./views/public'))
 app.use(expressEJSLayout)
 
 //body-parser(format)
