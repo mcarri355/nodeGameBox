@@ -8,10 +8,10 @@
 
         <img src="./images/memory.png" alt="" class="navLogo">
         <div>
-            <button class="navBtn navScore">
+            <button class="navBtn navScore" onclick="window.location.href='./scoreboard.html';">
                 <i class="fa-solid fa-star" style="color: #ffffff;"></i>
             </button>
-            <button class="navBtn navQuit">
+            <button class="navBtn navQuit" onclick="window.location.href='./login.html';">
                 <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
             </button>
         </div>
@@ -72,8 +72,8 @@
         </div>
     </section>
     <footer class="footerFlex">
-        <div class="topFooter">
-            Remaining Matches: 9
+        <div class="topFooter" id="remain">
+            Matches Found: 0
         </div>
         <div class="bottomFooter">
             <div class="bestTime bottomBtn bottomTime">
@@ -84,82 +84,107 @@
             </div>
             <div class="currentTime bottomBtn bottomTime">
                 <img src="./images/clock.png" alt="clock">
-                <div id="currentTime">
-                    0:12
-                </div>
+                <div id="countdown">2:00</div>
             </div>
             <div class="resetBtn bottomBtn" onclick="reset()">
                 RESET
             </div>
         </div>
     </footer>
-    <script>
-        const cards = document.querySelectorAll('.memory-card');
-            const currentTime = document.getElementById('#currentTime');
+<script>
+    const cards = document.querySelectorAll('.memory-card');
+        const remaingMatches = document.getElementById('remain');
 
-            let hasFlippedCard = false;
-            let lockBoard = false;
-            let firstCard, secondCard;
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let first = false;
+        let matchesFound = 0;
+        let firstCard, secondCard;
 
-            function flipCard() {
-                if (lockBoard) return;
-                if (this === firstCard) return;
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
 
-                this.classList.add('flip');
+            this.classList.add('flip');
 
-                if (!hasFlippedCard) {
-                    // first click
-                    hasFlippedCard = true;
-                    firstCard = this;
-                    return;
+            if (!hasFlippedCard) {
+                // first click
+                if (first === false) {
+                    setInterval(updateCountdown, 1000);
                 }
-
-                // second click
-                secondCard = this;
-
-                checkForMatch();
+                hasFlippedCard = true;
+                firstCard = this;
+                first = true;
+                return;
             }
 
-            function checkForMatch() {
-                let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+            // second click
+            secondCard = this;
 
-                isMatch ? disableCards() : unflipCards();
+            checkForMatch();
+        }
+
+        function checkForMatch() {
+            let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+
+            isMatch ? disableCards() : unflipCards();
+            if (isMatch) {
+                matchesFound++;
+                remaingMatches.innerHTML = `Remaining Matches: ${matchesFound}`;
+                if (matchesFound === 6) {
+                    console.log('hola');
+                }
             }
+        }
 
-            function disableCards() {
-                firstCard.removeEventListener('click', flipCard);
-                secondCard.removeEventListener('click', flipCard);
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+
+            resetBoard();
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
 
                 resetBoard();
-            }
+            }, 1500);
+        }
 
-            function unflipCards() {
-                lockBoard = true;
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
 
-                setTimeout(() => {
-                    firstCard.classList.remove('flip');
-                    secondCard.classList.remove('flip');
+        (function shuffle() {
+            cards.forEach((card) => {
+                let randomPos = Math.floor(Math.random() * 12);
+                card.style.order = randomPos;
+            });
+        })();
 
-                    resetBoard();
-                }, 1500);
-            }
+        cards.forEach((card) => card.addEventListener('click', flipCard));
 
-            function resetBoard() {
-                [hasFlippedCard, lockBoard] = [false, false];
-                [firstCard, secondCard] = [null, null];
-            }
+        function reset() {
+            location.reload();
+        }
 
-            (function shuffle() {
-                cards.forEach((card) => {
-                    let randomPos = Math.floor(Math.random() * 12);
-                    card.style.order = randomPos;
-                });
-            })();
+        // Countdown
+        const countdown = document.getElementById('countdown');
 
-            cards.forEach((card) => card.addEventListener('click', flipCard));
+        const countdownMinutes = 2;
+        let time = countdownMinutes * 60;
 
-            function reset() {
-                location.reload();
-            }
-    </script>
+        function updateCountdown() {
+            const minutes = Math.floor(time / 60.0);
+            let seconds = time % 60.0;
+            seconds = seconds < 2 ? '0' + seconds : seconds;
+            countdown.innerHTML = `${minutes}:${seconds}`;
+            time--;
+        }
+</script>
 </body>
