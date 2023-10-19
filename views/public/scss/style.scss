@@ -5,19 +5,19 @@
     src: url(../fonts/LuckiestGuy-Regular.ttf);
 }
 
-*{
+* {
     margin: 1rem;
     padding: 1rem;
     font-family: "lucky";
     color: #3d3d3ddd;
 }
 
-.bckg{
+.bckg {
     background: rgb(42, 157, 78);
     background: linear-gradient(#fff, rgba(42, 157, 78, 1) 46%);
 }
 
-.navlogo{
+.navlogo {
     position: relative;
     top: 7rem;
     left: 32rem;
@@ -25,7 +25,7 @@
     height: 49rem;
 }
 
-.text{
+.text {
     margin-top: 1.5rem;
     text-align: center;
     font-size: 2rem;
@@ -39,11 +39,20 @@
 
 .stext {
     text-align: center;
-    font-size: 16px;
+    font-size: 22px;
     width: 40rem;
     height: 25rem;
     position: relative;
     top: 17rem;
     left: 17rem;
+    margin-top: -15rem;
+}
+
+.astext {
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+    top: -10rem;
+    left: 48rem;
     margin-top: -15rem;
 }
