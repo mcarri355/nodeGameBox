@@ -10,23 +10,9 @@ router.get('/login', (req, res)=>{
 })
 
 //register page
-// router.get('/register', (req, res)=>{
-//     res.render('pages/register')
-// })
-
-// // Assuming you have a list of top users in your server
-// const topUsers = [
-//     { first_name: "User1", last_name: "Lastname1", points: 100 },
-//     { first_name: "User2", last_name: "Lastname2", points: 90 },
-//     // ... Add more users as needed
-// ];
-
-// // Set up an endpoint to serve the top users as JSON
-// app.get("/api/top-users", (req, res) => {
-//     // You can sort your topUsers list by points here
-//     const sortedTopUsers = topUsers.sort((a, b) => b.points - a.points).slice(0, 10);
-//     res.json({ topUsers: sortedTopUsers });
-// });
+router.get('/register', (req, res)=>{
+    res.render('pages/register')
+})
 
 //register handle
 router.post('/register', (req, res)=>{
