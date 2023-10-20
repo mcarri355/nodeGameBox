@@ -17,6 +17,14 @@
         </div>
     </nav>
     <section class="memory-game">
+        <div id="hidden">
+            <div class="result"></div>
+            <div>
+                <button onclick="reset()" class="resultButton">Play Again</button>
+                <button class="resultButton">Scoreboard</button>
+                <button class="resultButton">Quit</button>
+            </div>
+        </div>
         <div class="memory-card" data-framework="aurelia">
             <img class="front-face" src="./images/cook.png" alt="cooker" />
             <img class="back-face" src="./images/mark.webp" alt="JS Badge" />
@@ -92,14 +100,19 @@
         </div>
     </footer>
 <script>
+    const hide = document.getElementById('hidden')
+    hide.style.display = 'none';
+    const result = document.querySelector('.result');
     const cards = document.querySelectorAll('.memory-card');
-        const remaingMatches = document.getElementById('remain');
+        const remainingMatches = document.getElementById('remain');
+        const countdown = document.getElementById('countdown');
 
         let hasFlippedCard = false;
         let lockBoard = false;
         let first = false;
         let matchesFound = 0;
         let firstCard, secondCard;
+        let countdownInterval;
 
         function flipCard() {
             if (lockBoard) return;
@@ -110,7 +123,7 @@
             if (!hasFlippedCard) {
                 // first click
                 if (first === false) {
-                    setInterval(updateCountdown, 1000);
+                    startCountdown();
                 }
                 hasFlippedCard = true;
                 firstCard = this;
@@ -130,9 +143,11 @@
             isMatch ? disableCards() : unflipCards();
             if (isMatch) {
                 matchesFound++;
-                remaingMatches.innerHTML = `Remaining Matches: ${matchesFound}`;
+                remainingMatches.innerHTML = `Remaining Matches: ${6 - matchesFound}`;
                 if (matchesFound === 6) {
-                    console.log('hola');
+                    stopCountdown();
+                    result.innerHTML = 'You Won!'
+                    hide.style.display = 'flex';
                 }
             }
         }
@@ -174,17 +189,32 @@
         }
 
         // Countdown
-        const countdown = document.getElementById('countdown');
-
         const countdownMinutes = 2;
         let time = countdownMinutes * 60;
 
-        function updateCountdown() {
-            const minutes = Math.floor(time / 60.0);
-            let seconds = time % 60.0;
-            seconds = seconds < 2 ? '0' + seconds : seconds;
-            countdown.innerHTML = `${minutes}:${seconds}`;
-            time--;
+        function startCountdown() {
+            countdownInterval = setInterval(updateCountdown, 0);
         }
+
+        function stopCountdown() {
+            clearInterval(countdownInterval);
+        }
+
+        function updateCountdown() {
+            if (matchesFound < 6) {
+                const minutes = Math.floor(time / 60.0);
+                let seconds = time % 60.0;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                countdown.innerHTML = `${minutes}:${seconds}`;
+                time--;
+
+                if (time < 0) {
+                    stopCountdown();
+                    result.innerHTML = 'You Lost!'
+                    hide.style.display = 'flex';     
+        }
+            }
+        }
+
 </script>
 </body>

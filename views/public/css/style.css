@@ -20,6 +20,28 @@ section {
   width: 100%;
 }
 
+ #hidden{
+  flex-direction: column;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.result{
+  font-size: 4rem;
+  height: 50%;
+  color: white;
+}
+
+.resultButton{
+  width: 25%;
+  font-size: 1rem;
+}
+
 .memory-game {
   width: 600px;
   height: 450px;
