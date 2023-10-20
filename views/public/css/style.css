@@ -20,28 +20,6 @@ section {
   width: 100%;
 }
 
- #hidden{
-  flex-direction: column;
-  position: absolute;
-  z-index: 10;
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
-.result{
-  font-size: 4rem;
-  height: 50%;
-  color: white;
-}
-
-.resultButton{
-  width: 25%;
-  font-size: 1rem;
-}
-
 .memory-game {
   width: 600px;
   height: 450px;
@@ -269,32 +247,32 @@ body {
 
 .navlogo {
   position: relative;
-  top: 7rem;
-  left: 32rem;
-  width: 29rem;
-  height: 49rem;
+  top: 15rem;
+  left: 63rem;
+  width: 41rem;
+  height: 23rem;
 }
 
 .text {
   margin-top: 1.5rem;
   text-align: center;
-  font-size: 2rem;
-  width: 64rem;
+  font-size: 3.5rem;
+  width: 85rem;
   height: 25rem;
   position: relative;
-  top: 9rem;
-  left: 16rem;
+  top: 28.25rem;
+  left: 42rem;
   color: rgba(61, 61, 61, 0.8666666667);
 }
 
 .stext {
   text-align: center;
-  font-size: 22px;
+  font-size: 2.5rem;
   width: 40rem;
   height: 25rem;
   position: relative;
-  top: 17rem;
-  left: 17rem;
+  top: 56rem;
+  left: 39rem;
   margin-top: -15rem;
 }
 
@@ -303,6 +281,6 @@ body {
   font-size: 18px;
   position: relative;
   top: -10rem;
-  left: 48rem;
+  left: 32rem;
   margin-top: -15rem;
 }/*# sourceMappingURL=style.css.map */
