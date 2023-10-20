@@ -4,14 +4,32 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 
-<body class="bckg">
-    <h1 class="text">Dashboard
-    <p class="stext">Welcome <%= user.first_name %></p>
-    </h1>
-    <a class="astext" href="/game">Start Game</a>
+<body class="bckg dash" onload="leaderboard()">
+    <h1 class="text dashboard">Dashboard</h1>
+    <h3 class="stext">Welcome <%= user.first_name %></h3>
 
-    <a  class="astext" href="/users/logout">Logout</a>
-    
-    <h1 class="text">ScoreBoard</h1>
-    <p class="stext">Users with the best time</p>
+    <section>
+        <h1 class="text">ScoreBoard</h1>
+        <div class="container">
+            <ul>
+                <h4 class="stext">Users with the best time</h4>
+                <li>Games Played: <%= user.games_played %></li>
+                <li>Games Won: <%= user.games_won %></li>
+                
+                <% var winPercentage = (Number(user.games_won) / Number(user.games_played) * 100).toFixed(2) %>
+                <% if(isNaN(winPercentage)){winPercentage = 0} %>
+                <% console.log (winPercentage) %>
+                <li>Win Percentage: <%= winPercentage %>%</li>
+                <li>Current Win Streak: <%= user.win_streak %></li>
+                <li>Highest Win Streak: <%= user.highest_win_streak %></li>
+
+                <a class="astext" href="/game">Start Game</a>
+                <a class="astext" href="/users/logout">Logout</a>
+            </ul>
+            <ul class="leaderboard">
+                <h4>Win Streak Leaderboard</h4>
+            </ul>
+        </div>
+    </section>
+    <script src="public/js/dashboard.js"></script>
 </body>

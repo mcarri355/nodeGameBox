@@ -3,10 +3,17 @@
     <script src="https://kit.fontawesome.com/f25d8c8b5a.js" crossorigin="anonymous"></script>
 </head>
 
-<h1>Register</h1>
+<header>
+    <h1 class="heading">Registration Form</h1>
+</header>
 <%- include ('../partials/messages') %>
 <form action = "/users/register" method="POST">
-    <div>
+    <div class="container">
+        <div class="slider"></div>
+        <div class="btn">
+            <button class="login" onclick="window.location.href='/login';">Login</button>
+            <button class="signup" onclick="window.location.href='/register';">Signup</button>
+        </div>
         <label for="first_name">First Name</label>
         <input type="name" name="first_name" id="first_name" placeholder="Enter first name" value="<%= typeof first_name != 'undefined' ? first_name : '' %>">
     </div>
